@@ -1,4 +1,7 @@
 // App.js - Defines a backbone model class for the whole app.
+// Takes in the library / collection of songs 
+// params is {library: []}  the array to the left is the song data
+
 var AppModel = Backbone.Model.extend({
 
   initialize: function(params) {

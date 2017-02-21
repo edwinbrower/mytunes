@@ -8,6 +8,7 @@ var LibraryEntryView = Backbone.View.extend({
   events: {
     'click': function() {
       this.model.play();
+      this.model.enqueue();  // do we need to test  here if it's already added??
     }
   },
 
