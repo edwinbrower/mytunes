@@ -13,12 +13,22 @@ var AppView = Backbone.View.extend({
     }, this);
   },
 
+  // this.model.on('change:songQueue', function() {
+  //   this.rerender();
+  // }, this);
+
+
   render: function() {
     return this.$el.html([
       this.playerView.$el,
       this.libraryView.$el,
       this.songQueueView.$el
     ]);
-  }
+  }//,
+
+  // rerender: function(){
+  //   this.songQueueView = new SongQueueView({collection: this.model.get('songQueue')});
+  //   this.render();
+  // }
 
 });

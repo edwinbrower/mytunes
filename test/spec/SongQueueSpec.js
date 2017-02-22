@@ -68,6 +68,9 @@ describe('SongQueue', function() {
 
   describe('playFirst', function() {
     it('plays the first song in the queue', function() {
+      SongModel.prototype.play.restore(); // This is weird that we had to add this line here. 
+                                          // We should look at this later....If you call this.play 
+                                          // in LEV the error doesnt happen
       sinon.spy(SongModel.prototype, 'play');
       var songQueue = new SongQueue(songData1);
       songQueue.playFirst();
