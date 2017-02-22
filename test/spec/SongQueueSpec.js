@@ -43,6 +43,15 @@ describe('SongQueue', function() {
       expect(songQueue.at(0)).to.equal(song2);
     });
 
+    it('expects dequeue to be called', function() {
+      dequeueSpy = sinon.spy(SongQueue.prototype, 'dequeue');
+      var songQueue = new SongQueue([songData1, songData2]);
+      song2 = songQueue.at(1);
+      songQueue.at(0).trigger('ended');
+      expect(dequeueSpy).to.have.been.called;
+      SongQueue.prototype.dequeue.restore();
+    });
+
     it('plays the first song in the queue if there are any songs left', function() {
       var songQueue = new SongQueue([songData1, songData2]);
       songQueue.at(0).ended();
@@ -66,11 +75,17 @@ describe('SongQueue', function() {
     });
   });
 
+  describe('when the current song playing is dequeued', function() {
+    it('plays the first song in the queue if there are any songs left', function() {
+      var songQueue = new SongQueue([songData1, songData2]);
+      song2 = songQueue.at(1);
+      songQueue.at(0).dequeue();
+      expect(songQueue.at(0)).to.equal(song2);
+    });
+  });
+
   describe('playFirst', function() {
     it('plays the first song in the queue', function() {
-      SongModel.prototype.play.restore(); // This is weird that we had to add this line here. 
-                                          // We should look at this later....If you call this.play 
-                                          // in LEV the error doesnt happen
       sinon.spy(SongModel.prototype, 'play');
       var songQueue = new SongQueue(songData1);
       songQueue.playFirst();

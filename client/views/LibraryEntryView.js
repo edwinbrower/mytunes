@@ -7,10 +7,7 @@ var LibraryEntryView = Backbone.View.extend({
 
   events: {
     'click': function() {
-      // if (this.mode.collection)
-      // this.model.play();  // currently works with play but it should only enqueue....
-      this.model.enqueue();  // do we need to test  here if it's already added??
-      // this.model.render();
+      this.model.enqueue(); 
     }
   },
 

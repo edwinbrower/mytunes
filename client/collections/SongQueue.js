@@ -4,8 +4,6 @@ var SongQueue = Backbone.Collection.extend({
   model: SongModel,
 
   initialize: function() {
-    console.log(this);
-
     this.on('add', this.enqueue, this);
     this.on('dequeue', this.dequeue, this);
     this.on('ended', this.dequeue, this);
