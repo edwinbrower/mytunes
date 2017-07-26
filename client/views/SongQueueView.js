@@ -21,5 +21,4 @@ var SongQueueView = Backbone.View.extend({
     );
   },
 
-
 });
